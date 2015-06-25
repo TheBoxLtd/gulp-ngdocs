@@ -1,3 +1,7 @@
+.navbar-fixed-top .container-fluid {
+  margin: 0 25px;
+}
+
 img.AngularJS-small {
   width: 95px;
   height: 25px;
@@ -282,4 +286,18 @@ ul.events > li > h3 {
 
 .type-hint-number {
   background:rgb(189, 63, 66);
+}
+
+.list-group .list-group-item a {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.list-group .list-group-item.active a,
+.list-group .list-group-item.active a:hover {
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
 }

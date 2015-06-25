@@ -84,7 +84,7 @@
 
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <% if (image) { %>
           <% if (imageLink) { %>
@@ -131,8 +131,8 @@
 
     <div class="row">
       <div class="col-md-2">
-        <ul class="nav nav-list">
-          <li ng-repeat="(url, name) in sections" ng-class="{active: isActivePath(url)}">
+        <ul class="list-group">
+          <li ng-repeat="(url, name) in sections" ng-class="{active: isActivePath(url)}" class="list-group-item">
             <a ng-href="{{url}}"><i class="icon-book icon-white"></i> {{name}}</a>
           </li>
         </ul>
@@ -156,63 +156,65 @@
           <% } %>
           <div class="spacer"></div>
 
-          <ul class="nav nav-list well" ng-show="pages.length">
-            <li ng-repeat="page in pages track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+          <ul class="list-group" ng-if="pages.length">
+            <li ng-repeat="page in pages track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
           </ul>
 
-          <ul class="nav nav-list well" ng-repeat="module in modules track by module.url" class="api-list-item">
-            <li class="nav-header module">
-              <a class="guide">module</a>
-              <a class="code" href="{{module.url}}">{{module.name}}</a>
+          <ul class="list-group" ng-repeat="module in modules track by module.url" class="api-list-item list-group-item">
+            <li class="nav-header module list-group-item"">
+              <span class="label label-default pull-right">module</span>
+              <a href="{{module.url}}">{{module.name}}</a>
             </li>
 
-            <li ng-repeat="page in module.others track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.others track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.directives.length">
+            <li class="nav-header section list-group-item"" ng-if="module.directives.length">
               <a class="guide">directive</a>
             </li>
-            <li ng-repeat="page in module.directives track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.directives track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.controllers.length">
+            <li class="nav-header section list-group-item"" ng-if="module.controllers.length">
               <a class="guide">controller</a>
             </li>
-            <li ng-repeat="page in module.controllers track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.controllers track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.filters.length">
+            <li class="nav-header section list-group-item"" ng-if="module.filters.length">
               <a class="guide">filter</a>
             </li>
-            <li ng-repeat="page in module.filters track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.filters track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.services.length">
-              <a class="guide">service</a>
+            <li class="nav-header section list-group-item"" ng-if="module.services.length">
+              <a>service</a>
             </li>
-            <li ng-repeat="service in module.services track by service.instance.url" ng-class="navClass(service.instance, service.provider)" class="api-list-item expand">
-              <a ng-show="service.provider" class="pull-right" href="{{service.provider.url}}" tabindex="2"><i class="icon-cog"></i></a>
+            <li ng-repeat="service in module.services track by service.instance.url" ng-class="navClass(service.instance, service.provider)" class="api-list-item expand list-group-item"">
+              <a ng-if="service.provider" class="pull-right" href="{{service.provider.url}}" tabindex="2">
+                <i class="icon-cog"></i>
+              </a>
               <a href="{{service.instance.url}}" tabindex="2">{{service.name}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.types.length">
+            <li class="nav-header section list-group-item"" ng-if="module.types.length">
               <a class="guide">Types</a>
             </li>
-            <li ng-repeat="page in module.types track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.types track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.shortName}}</a>
             </li>
 
-            <li class="nav-header section" ng-show="module.globals.length">
+            <li class="nav-header section list-group-item"" ng-if="module.globals.length">
               <a class="global guide">global APIs</a>
               &nbsp;
             </li>
-            <li ng-repeat="page in module.globals track by page.url" ng-class="navClass(page)" class="api-list-item expand">
+            <li ng-repeat="page in module.globals track by page.url" ng-class="navClass(page)" class="api-list-item expand list-group-item"">
               <a href="{{page.url}}" tabindex="2">{{page.id}}</a>
             </li>
 
