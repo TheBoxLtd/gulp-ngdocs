@@ -25,7 +25,7 @@
           sync = true;
 
       addTag('base', {href: baseUrl});
-      addTag('link', {rel: 'stylesheet', href: 'css/bootstrap.min.css', type: 'text/css'});
+      addTag('link', {rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', type: 'text/css'});
       addTag('link', {rel: 'stylesheet', href: 'css/font-awesome.css', type: 'text/css'});
       addTag('link', {rel: 'stylesheet', href: 'css/prettify.css', type: 'text/css'});
       addTag('link', {rel: 'stylesheet', href: 'css/docs.css', type: 'text/css'});
@@ -83,29 +83,29 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <% if (image) { %>
-            <% if (imageLink) { %>
-              <a href="<%= imageLink %>">
-            <% } %>
-              <img class="pull-left" src="<%= image %>">
-            <% if (imageLink) { %>
-              </a>
-            <% } %>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <% if (image) { %>
+          <% if (imageLink) { %>
+            <a class="navbar-brand" href="<%= imageLink %>">
           <% } %>
-          <% if (title) {%>
-            <a <% if (titleLink) { %> href="<%= titleLink %>" <% } %> class="brand"><%= title %></a>
+            <img class="pull-left" src="<%= image %>">
+          <% if (imageLink) { %>
+            </a>
           <% } %>
-          <%= navContent %>
-        </div>
+        <% } %>
+        <% if (title) {%>
+          <a <% if (titleLink) { %> href="<%= titleLink %>" <% } %> class="navbar-brand"><%= title %></a>
+        <% } %>
+      </div>
+      <div class="collapse navbar-collapse">
+        <%= navContent %>
       </div>
     </div>
-  </header>
+  </div>
 
-  <div role="main" class="container">
+  <div role="main" class="container-fluid">
     <div class="row clear-navbar"></div>
 
     <div class="row">
@@ -130,20 +130,20 @@
     </div>
 
     <div class="row">
-      <div class="span3">
+      <div class="col-md-2">
         <ul class="nav nav-list">
           <li ng-repeat="(url, name) in sections" ng-class="{active: isActivePath(url)}">
             <a ng-href="{{url}}"><i class="icon-book icon-white"></i> {{name}}</a>
           </li>
         </ul>
       </div>
-      <div class="span3">
+      <div class="col-md-3">
         <form class="form-search" ng-submit="submitForm()">
           <% if (bestMatch) { %>
           <div class="dropdown search"
                ng-class="{open: focused && bestMatch.rank > 0 && bestMatch.page != currentPage}">
             <input type="text" ng-model="search" placeholder="search the docs"
-                   tabindex="1" accesskey="s" class="search-query" focused="focused">
+                   tabindex="1" accesskey="s" class="form-control search-query" focused="focused">
             <ul class="dropdown-menu">
               <li>
                 <a href="{{bestMatch.page.url}}">{{bestMatch.page.shortName}}</a>
@@ -152,7 +152,7 @@
           </div>
           <% } else { %>
           <input type="text" ng-model="search" placeholder="search the docs"
-                 tabindex="1" accesskey="s" class="search-query">
+                 tabindex="1" accesskey="s" class="form-control search-query">
           <% } %>
           <div class="spacer"></div>
 
@@ -220,15 +220,14 @@
 
         </form>
       </div>
-      <div class="span6">
+      <div class="col-md-7">
 
-        <ul class="breadcrumb">
-          <li ng-repeat="crumb in breadcrumb">
-            <span ng-hide="crumb.url">{{crumb.name}}</span>
-            <a ng-show="crumb.url" href="{{crumb.url}}">{{crumb.name}}</a>
-            <span ng-show="crumb.url" class="divider">/</span>
+        <ol class="breadcrumb">
+          <li ng-repeat="crumb in breadcrumb" ng-class="{active: !crumb.url}">
+            <span ng-if="!crumb.url">{{crumb.name}}</span>
+            <a ng-if="crumb.url" href="{{crumb.url}}">{{crumb.name}}</a>
           </li>
-        </ul>
+        </ol>
 
         <div id="loading" ng-show="loading">Loading...</div>
 
