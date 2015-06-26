@@ -259,9 +259,8 @@ ul.events > li > h3 {
 }
 
 .variables-matrix .type-hint {
-  text-align:center;
-  display:block;
-  min-width:60px;
+  display: inline-block;
+  margin: 0 5px;
 }
 
 .type-hint + .type-hint {
@@ -293,6 +292,7 @@ ul.events > li > h3 {
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
+  outline: none;
 }
 
 .list-group .list-group-item.active a,
