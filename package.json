@@ -6,7 +6,7 @@
   "main": "index",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikhilmodak/gulp-ngdocs.git"
+    "url": "https://github.com/TheBoxLtd/gulp-ngdocs.git"
   },
   "keywords": [
     "gulpplugin",
